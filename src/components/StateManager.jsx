@@ -6,19 +6,22 @@ import {
   StyledButton,
   ButtonGroup,
 } from "../styles/StyledComponents";
+import { useContext } from "react";
+import { MessageContext } from "../context/MessageContext";
 
-function StateControl({ onMessageChange }) {
+function StateControl() {
+  const {setMessage} = useContext(MessageContext);
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onMessageChange(inputValue);
+    setMessage(inputValue);
     setInputValue("");
   };
 
   const handleReset = () => {
     setInputValue("");
-    onMessageChange("");
+    setMessage("");
   };
 
   return (
